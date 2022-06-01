@@ -15,6 +15,7 @@ urlpatterns = [
     path('home/',views.home_page_view, name='home'),
     path('noticias/',views.noticias_page_view, name='noticias'),
     path('videoconferencia/',views.videoconferencia_page_view, name='videoconferencia'),
+    path('zoom-div/',views.zoom_div_page_view, name='zoom-div'),  
     path('login/',views.login_page_view, name='login'),
     path('logout/',views.logout_page_view, name='logout'),
 ]

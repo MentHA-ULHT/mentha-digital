@@ -190,15 +190,48 @@
                         document.querySelector('#content').innerHTML = text;
                         document.querySelector('html').scrollTop = 0;
 
-                        document.querySelector('a-videoconferencia').style.display = 'block'
-                        document.querySelector('a-logout').style.display = 'block'
-                        document.querySelector('a-login').style.display = 'none'
-
                         let a = document.querySelector('#a-login');
                         a.style.color = 'white';
                         a.style.borderbottom = '1px solid white';
                         a.style.textDecoration = 'none';
+                    })
+                    .then(() => {
+                        document.querySelector('#form-login').onsubmit = (e) => {
+                            
+                        // prevent default event onsubmit
+                        e.preventDefault();
 
+                        // elemento form 
+                        var myForm = document.querySelector('#form-login');
+                        
+                        // guarda dados do formulario numa estrutura da dados
+                        var formData = new FormData(myForm); 
+                        
+                        // for (var [key, value] of formData.entries()) { 
+                        //     console.log(key, value);
+                        // }
+                            
+                        fetch("{% url 'mentha:login' %}" , {method: 'POST', body: formData })
+                            .then(response => response.text())
+                            .then(text => {
+                                
+                                if(text == 'ok') {   
+                                    document.querySelector('#a-videoconferencia').style.display = 'block';
+                                    document.querySelector('#a-logout').style.display = 'block';
+                                    document.querySelector('#a-login').style.display = 'none';  
+                                    
+                                    var nome = document.querySelector('#form-login [name="username"]').value;
+                                    document.querySelector('#login .branco .titulo').innerHTML = `Olá ${nome}!`;
+
+                                    document.querySelector('#login .branco .texto').innerHTML = `Seja bem-vindo ao MentHA Digital.<br><br>`;
+                                }
+                                else {
+                                    const mensagem = document.querySelector('#login #mensagem')
+                                    mensagem.innerHTML = "Credenciais inválidas";
+                                }
+
+                            });
+                        }                     
                     });
                 return false;
             }
@@ -211,18 +244,20 @@
                         document.querySelector('#content').innerHTML = text;
                         document.querySelector('html').scrollTop = 0;
 
-                        document.querySelector('a-videoconferencia').style.display = 'none'
-                        document.querySelector('a-logout').style.display = 'none'
-                        document.querySelector('a-login').style.display = 'block'
+                        document.querySelector('#a-videoconferencia').style.display = 'none'
+                        document.querySelector('#a-logout').style.display = 'none'
+                        document.querySelector('#a-login').style.display = 'block'
 
-                        let a = document.querySelector('#a-login');
+                        let a = document.querySelector('#a-logout');
                         a.style.color = 'white';
                         a.style.borderbottom = '1px solid white';
                         a.style.textDecoration = 'none';
 
                     });
                 return false;
-            }
+            }          
+
+            
 
             document.querySelector('#a-contacto').onclick = () => {
                 fetch("{% url 'mentha:contacto' %}")
@@ -239,7 +274,7 @@
                 then(() => {
 
                     /** formulário ****************************************************/
-                    alert('clicou em contacto')
+
                     document.querySelector('#form-contacto').onsubmit = () => {
                         alert('submeteu formulario')
                         var myForm = document.querySelector('#form-contacto');
@@ -277,6 +312,7 @@
                 return false;
             }
 
+
             document.querySelector('#a-videoconferencia').onclick = () => {
                 fetch("{% url 'mentha:videoconferencia' %}")
                     .then(response => response.text())
@@ -289,11 +325,23 @@
                         a.style.borderbottom = '1px solid white';
                         a.style.color = 'white';
                         a.style.textDecoration = 'none';
+                    })
+                    .then( () => {
 
+                        //  https://forum.shapespark.com/t/room-with-zoom-embeding-a-zoom-meeting-a-short-guide/1214/7
+                        document.querySelector('#zoom-button').onclick = () => {
+                        
+                            fetch("{% url 'mentha:zoom-div' %}")
+                                .then(response => response.text())
+                                .then(text => {
+                                    document.querySelector('#zoom').innerHTML = text;
+                                });
+                            return false;                            
+                        }
                     });
                 return false;
             }
-            
+
             
             document.querySelector('#a-equipa').onclick = () => {
                 fetch("{% url 'mentha:equipa' %}")
@@ -410,10 +458,9 @@
                 <a id='a-home' href="">MentHA</a>
                 <a id='a-noticias' href="">Notícias</a>
                 <a id='a-projeto' href="">Projeto</a>
-                <!-- <a id='a-mentha-cog' href="">MentHA Cog</a> -->
                 <a id='a-aplicacoes' href="">Programas</a>
-                <a id='a-equipa' href="">Equipa</a>
                 <a id='a-parceiros' href="">Parceiros</a>
+                <a id='a-equipa' href="">Equipa</a>
                 <a id='a-videoconferencia' href="">Zoom</a>
                 <a id='a-contacto' href="">Contacto</a>
                 <a id='a-login' href="">Login</a>

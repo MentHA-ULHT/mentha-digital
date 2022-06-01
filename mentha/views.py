@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render, HttpResponseRedirect, reverse
 from .forms import ContactoForm
 from .models import Noticia
@@ -9,10 +10,7 @@ from django.contrib.auth.decorators import login_required
 
 def login_page_view(request):
 
-    print("\n\nesta na funcao login\n\n")
-
     if request.method == 'POST':
-        print("\n\nrecebeu post!!!\n\n")
         
         username = request.POST['username']
         password = request.POST['password']
@@ -22,11 +20,9 @@ def login_page_view(request):
         if user is not None:
             print("\n\n fez login ok\n\n")
             login(request, user)
-            return HttpResponseRedirect(reverse('mentha:home'))
+            return HttpResponse('ok')
         else:
-            print("\n\n NAO fez login ok\n\n")
-            return render(request, 'mentha/login.html',
-            {'mensagem': 'Credenciais inválidas'})
+            return HttpResponse('nok')
 
     return render(request, 'mentha/login.html')
 
@@ -65,6 +61,9 @@ def noticias_page_view(request):
 
 def videoconferencia_page_view(request):
     return render (request, 'mentha/videoconferencia.html')
+
+def zoom_div_page_view(request):
+    return render (request, 'mentha/zoom-div.html')
 
 def contacto_page_view(request):
     
