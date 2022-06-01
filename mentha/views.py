@@ -51,6 +51,9 @@ def projeto_page_view(request):
 def parceiros_page_view(request):
     return render (request, 'mentha/parceiros.html')
 
+def equipa_page_view(request):
+    return render (request, 'mentha/equipa.html')
+
 def mentha_cog_page_view(request):
     return render (request, 'mentha/mentha-cog.html')
 

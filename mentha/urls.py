@@ -10,6 +10,7 @@ urlpatterns = [
     path('aplicacoes/', views.aplicacoes_page_view, name='aplicacoes'),
     path('projeto/', views.projeto_page_view, name='projeto'),
     path('mentha-cog/', views.mentha_cog_page_view, name='mentha-cog'),
+    path('equipa/', views.equipa_page_view, name='equipa'),
     path('contacto/', views.contacto_page_view, name='contacto'),
     path('home/',views.home_page_view, name='home'),
     path('noticias/',views.noticias_page_view, name='noticias'),

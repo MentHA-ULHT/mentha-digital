@@ -100,23 +100,6 @@
             }
 
 
-            // document.querySelector('#a-aplicacoes').onclick = () => {
-            //     fetch("{% url 'mentha:aplicacoes' %}")
-            //         .then(response => response.text())
-            //         .then(text => {
-            //             document.querySelector('#content').innerHTML = text;
-            //             document.querySelector('html').scrollTop = 0;
-
-            //             let a = document.querySelector('#a-aplicacoes');
-            //             a.style.color = 'white';
-            //             a.style.borderbottom = '1px solid white';
-            //             a.style.textDecoration = 'none';
-
-            //         });
-            //     return false;
-            // }
-
-
             function fetchmenthaCog() {
                 fetch("{% url 'mentha:mentha-cog' %}")
                     .then(response => response.text())
@@ -310,6 +293,46 @@
                     });
                 return false;
             }
+            
+            
+            document.querySelector('#a-equipa').onclick = () => {
+                fetch("{% url 'mentha:equipa' %}")
+                    .then(response => response.text())
+                    .then(text => {
+                        document.querySelector('#content').innerHTML = text;
+                        document.querySelector('html').scrollTop = 0;
+                    })
+                    .then(() => {
+                        document.querySelectorAll('#equipa .descricao').forEach(d => {
+                            d.style.display = 'none';
+                            d.style.paddingLeft = '3ch';
+                        });
+                                    
+                        let a = document.querySelector('#a-equipa');
+                        a.style.color = 'white';
+                        a.style.borderbottom = '1px solid white';
+                        a.style.textDecoration = 'none';
+                    })
+                    .then(() => {
+                        document.querySelectorAll('#equipa .nome').forEach(d => {
+                            d.onclick = () => {
+                                let texto = d.nextElementSibling;
+
+                                if (texto.style.display == 'block') {
+                                    texto.style.display = 'none';
+                                } else {
+                                    document.querySelectorAll('#equipa .descricao').forEach(d => {
+                                        d.style.display = 'none';
+                                    });
+                                    texto.style.display = 'block';
+                                }
+                            }
+                        });
+                    });
+                return false;
+            }
+
+
 
             document.querySelector('#a-parceiros').onclick = () => {
                 fetch("{% url 'mentha:parceiros' %}")
@@ -389,6 +412,7 @@
                 <a id='a-projeto' href="">Projeto</a>
                 <!-- <a id='a-mentha-cog' href="">MentHA Cog</a> -->
                 <a id='a-aplicacoes' href="">Programas</a>
+                <a id='a-equipa' href="">Equipa</a>
                 <a id='a-parceiros' href="">Parceiros</a>
                 <a id='a-videoconferencia' href="">Zoom</a>
                 <a id='a-contacto' href="">Contacto</a>

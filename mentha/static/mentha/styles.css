@@ -316,6 +316,37 @@ footer img {
     gap: 1em;
 }
 
+/****** Equipa ******************************/
+
+/* 
+#equipa a {
+    text-decoration: none;
+    font-weight: 600;
+} 
+*/
+
+#equipa .descricao {
+    display: none;
+    padding-left: 35em;
+}
+
+#equipa .investigador {
+    padding: 2ch 5ch;
+}
+
+#equipa .investigador .nome * {
+    display: block;
+    text-align: left;
+}
+
+#equipa .investigador .nome {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 1em;
+}
+
+
 /******CONTACTO******************************/
 
 
