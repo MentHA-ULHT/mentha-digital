@@ -6,7 +6,7 @@
     font-size: 1em;
 }
 
-p {    color: black;}
+p, li {    color: black;}
 
 main{
     display:flex;
@@ -73,7 +73,7 @@ nav a:hover {
     border-bottom: 1px solid white;
 }
 
-#aplicacoes #div-mentha-cog:hover,
+#aplicacoes .aplicacao:hover,
 #programa .caixa {
   cursor: pointer;
 }
@@ -81,7 +81,6 @@ nav a:hover {
 
 
 #mentha-cog
-
 #a-videoconferencia,
 #a-logout {
     display: none;
@@ -245,6 +244,8 @@ footer {
     transition: opacity 0.5s, background-color 0.5s;
 
 }
+
+.close {opacity: 1;}
 
 footer img {
     height: 2em;

@@ -100,8 +100,8 @@
             }
 
 
-            function fetchmenthaCog() {
-                fetch("{% url 'mentha:mentha-cog' %}")
+            function fetchPrograma(programa) {
+                fetch(programa)
                     .then(response => response.text())
                     .then(text => {
                         document.querySelector('#content').innerHTML = text;
@@ -176,8 +176,17 @@
                     })
                     .then(() => {
                         document.querySelector('#div-mentha-cog').onclick = () => {
-                            fetchmenthaCog();
+                            fetchPrograma("{% url 'mentha:mentha-cog' %}");
                         }
+
+                        document.querySelector('#div-mentha-care').onclick = () => {
+                            fetchPrograma("{% url 'mentha:mentha-care' %}");
+                        }
+
+                        document.querySelector('#div-protocolo-mentha').onclick = () => {
+                            fetchPrograma("{% url 'mentha:protocolo-mentha' %}");
+                        }
+
                     });
                 return false;
             }

@@ -38,20 +38,30 @@ def index_page_view(request):
 def home_page_view(request): # mudar o nome para intro
     return render (request, 'mentha/index.html')
 
-def aplicacoes_page_view(request):
-    return render (request, 'mentha/aplicacoes.html')
 
 def projeto_page_view(request):
     return render (request, 'mentha/projeto.html')
+
+
+def aplicacoes_page_view(request):
+    return render (request, 'mentha/aplicacoes.html')
+
+def mentha_cog_page_view(request):
+    return render (request, 'mentha/mentha-cog.html')
+    
+def mentha_care_page_view(request):
+    return render (request, 'mentha/mentha-care.html')
+    
+def protocolo_mentha_page_view(request):
+    return render (request, 'mentha/protocolo-mentha.html')
+    
+
 
 def parceiros_page_view(request):
     return render (request, 'mentha/parceiros.html')
 
 def equipa_page_view(request):
     return render (request, 'mentha/equipa.html')
-
-def mentha_cog_page_view(request):
-    return render (request, 'mentha/mentha-cog.html')
 
 def noticias_page_view(request):
 
